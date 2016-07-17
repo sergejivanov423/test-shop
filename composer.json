@@ -1,0 +1,10 @@
+{
+    "name": "serg/test-shop",
+    "authors": [
+        {
+            "name": "sergejivanov423",
+            "email": "sergejivanov423@gmail.com"
+        }
+    ],
+    "require": {}
+}
