@@ -4,7 +4,7 @@ namespace ShopApp\Components;
 use ShopApp\Exceptions\ContrExeption;
 
 /**
- * Class Router
+ * Class Router Finds Controllers, Actions and Params
  * @package ShopApp\Components
  */
 class Router
@@ -29,6 +29,7 @@ class Router
      * 5. The array elements are our CONTROLLER, ACTION, and PARAMETERS
      * 6. Use Reflection Api and call Controller Action
      *
+     * @throws ContrExeption and \Exeption
      */
     public function run()
     {
