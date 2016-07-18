@@ -12,3 +12,5 @@ define('CONTROLLER',__DIR__.'/app/core/controllers/');
 // Path to Views folder
 define('VIEWS',__DIR__.'/app/core/views/');
 
+// Relative path (without name of host)
+define('SITE_URL','/');
