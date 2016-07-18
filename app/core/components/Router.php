@@ -80,6 +80,13 @@ class Router
                     );
                 }
             }
+        } else {
+            try {
+                throw new \Exception('<p style="color:red">Не правильный адресс сайта.</p>');
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+                exit();
+            }
         }
     }
 
