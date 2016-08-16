@@ -1,0 +1,24 @@
+{
+  "name": "bootstrap",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "sergejivanov423 <sergejivanov423@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3"
+  },
+  "resolutions": {
+    "jquery": "1.9.1 - 3"
+  }
+}
