@@ -22,3 +22,6 @@ $RECYCLE.BIN/
 *.lnk
 
 /vendor/
+
+/bower_components/
+/node_modules/
