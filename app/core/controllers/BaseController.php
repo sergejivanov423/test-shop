@@ -11,6 +11,11 @@ use ShopApp\Exceptions\ContrExeption;
 class BaseController
 {
     protected $page;
+    protected $header;
+    protected $footer;
+    protected $title;
+    protected $content;
+    protected $needCarousel = true;
 
     /**
      * @param $path
@@ -42,10 +47,18 @@ class BaseController
     /**
      * echo page after render
      */
-    public function getPage()
+    protected function getPage()
     {
         echo $this->page;
     }
+
+    protected function input($params = []) {
+        $this->header = $this->render(VIEWS."layouts/header", [
+                                        'carousel' => $this->needCarousel
+                                    ]);
+        $this->footer = $this->render(VIEWS."layouts/footer");
+    }
+
 
 
 }
