@@ -1,0 +1,42 @@
+@font-default: "Open Sans";
+@body-bg: #ececec;
+@body-font-size: 15px;
+@base-text-color: #000;
+@h3-font-size: 24px;
+@h3-font-weight: 700;
+@btn-color: #f70400;
+
+#helpers{
+
+  .border-radius(@radius:5px){
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+  }
+
+  .btn-red(){
+    color: #ffffff;
+    background: @btn-color;
+    &:hover{
+      text-decoration: none;
+      background: #e3100f;
+    }
+  }
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+h3 {
+  font-size: @h3-font-size;
+  font-weight: @h3-font-weight;
+}
+
+body{
+  font-family:  @font-default, sans-serif;
+  background: @body-bg;
+  font-size:@body-font-size;
+  color: @base-text-color;
+  min-width: 320px;
+}
