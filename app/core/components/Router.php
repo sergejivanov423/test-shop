@@ -33,21 +33,28 @@ class Router
      */
     public function run()
     {
+        // if the pattern does not match with the route then
+        // set the flag value to false
+        $flag = true;
+
         // The relative path excluding the host name
-        $path = substr($_SERVER['PHP_SELF'],0,strpos($_SERVER['PHP_SELF'],'index.php'));
+        $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'],'index.php'));
 
         // RequestURL excluding the script file[index.php]
         $request = $this->getURL();
 
         if(SITE_URL === $path) {
 
-            $realRoute = (string) substr($request,strlen(SITE_URL));
+            $realRoute = (stripos($request, $path) !== false) ?
+                (string) substr($request, strlen(SITE_URL)) : "";
+
+
 
             foreach ($this->routes as $urlPattern => $path) {
 
                 if (preg_match("~$urlPattern~", $realRoute)) {
 
-                    $internalRoute = preg_replace("~$urlPattern~", $path, $realRoute);
+                    $internalRoute = preg_replace("~$urlPattern~", $path, $realRoute, 1);
                     $internalRoute = trim($internalRoute,'/');
                     $parts = explode('/', $internalRoute);
 
@@ -64,20 +71,16 @@ class Router
                             if ($ref->isInstantiable()) {
                                 $controller = $ref->newInstance();
                                 $action = $ref->getMethod($actionName);
+
                                 $callAction = $action->invokeArgs($controller, $urlParams);
                                 break;
-
                             }
                         }
+                        else{
+                            $flag = false;
+                        }
                     }
-                } else {
 
-                    throw new ContrExeption(
-                        '<p style="color:red">
-                            Неверно заданы маршруты
-                            в конфигурационном файле
-                        </p>'
-                    );
                 }
             }
         } else {
@@ -88,6 +91,16 @@ class Router
                 exit();
             }
         }
+
+        if(!$flag) {
+
+            throw new ContrExeption(
+                '<p style="color:red">
+                                Неверно заданы маршруты
+                                в конфигурационном файле
+                            </p>'
+            );
+        }
     }
 
     /**
@@ -96,7 +109,7 @@ class Router
     private function getURL()
     {
         if (!empty($_SERVER['REQUEST_URI'])) {
-            return trim($_SERVER['REQUEST_URI'],"/");
+            return $_SERVER['REQUEST_URI'];
         }
     }
 }
